@@ -1,69 +1,55 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
 
 const Index = () => {
-  const [timeLeft, setTimeLeft] = useState({ hours: 23, minutes: 59, seconds: 59 });
   const [activeCategory, setActiveCategory] = useState('all');
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev.seconds > 0) return { ...prev, seconds: prev.seconds - 1 };
-        if (prev.minutes > 0) return { ...prev, minutes: prev.minutes - 1, seconds: 59 };
-        if (prev.hours > 0) return { hours: prev.hours - 1, minutes: 59, seconds: 59 };
-        return prev;
-      });
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
   const categories = [
-    { id: 'all', name: 'Все', icon: 'Grid3x3' },
-    { id: 'men', name: 'Мужское', icon: 'User' },
+    { id: 'all', name: 'Все коллекции', icon: 'Sparkles' },
     { id: 'women', name: 'Женское', icon: 'User' },
-    { id: 'shoes', name: 'Обувь', icon: 'Footprints' },
+    { id: 'men', name: 'Мужское', icon: 'User' },
     { id: 'accessories', name: 'Аксессуары', icon: 'ShoppingBag' },
   ];
 
   const products = [
     {
       id: 1,
-      name: 'ULTRABOOST 22',
-      category: 'shoes',
-      price: '12 990',
-      image: 'https://cdn.poehali.dev/projects/98496b6e-deb1-4c3e-9923-6404c391b984/files/a8d10cfc-a63c-49da-b39a-4cf22026d693.jpg',
-      badge: 'Новинка',
-      isLimited: false,
+      name: 'ԱՐԱՐԱՏ',
+      nameEn: 'Ararat Collection',
+      category: 'women',
+      price: '24 900',
+      image: 'https://cdn.poehali.dev/projects/98496b6e-deb1-4c3e-9923-6404c391b984/files/2cd84e36-147a-4baa-a468-a9cc5af926a0.jpg',
+      badge: 'Новая коллекция',
     },
     {
       id: 2,
-      name: 'ADICOLOR HOODIE',
+      name: 'ԽԱՉՔԱՐ',
+      nameEn: 'Khachkar Jacket',
       category: 'men',
-      price: '4 990',
-      image: 'https://cdn.poehali.dev/projects/98496b6e-deb1-4c3e-9923-6404c391b984/files/183b72fc-f00a-4f66-b791-490ea8e82a2a.jpg',
-      badge: 'Хит',
-      isLimited: false,
+      price: '32 900',
+      image: 'https://cdn.poehali.dev/projects/98496b6e-deb1-4c3e-9923-6404c391b984/files/1d283e3d-e9e4-40db-9cad-5d55e536d783.jpg',
+      badge: 'Хит продаж',
     },
     {
       id: 3,
-      name: 'CLASSIC BACKPACK',
+      name: 'ԵՐԵՎԱՆ',
+      nameEn: 'Yerevan Bag',
       category: 'accessories',
-      price: '3 490',
-      image: 'https://cdn.poehali.dev/projects/98496b6e-deb1-4c3e-9923-6404c391b984/files/e1e735e9-a7ae-41a9-8e32-2ed0bb2c4519.jpg',
-      badge: 'Топ',
-      isLimited: false,
+      price: '12 900',
+      image: 'https://cdn.poehali.dev/projects/98496b6e-deb1-4c3e-9923-6404c391b984/files/9b08b4d3-a536-4628-bc3f-bffa34a301ac.jpg',
+      badge: 'Лимитировано',
     },
     {
       id: 4,
-      name: 'NMD_S1 LIMITED',
-      category: 'shoes',
-      price: '15 990',
-      image: 'https://cdn.poehali.dev/projects/98496b6e-deb1-4c3e-9923-6404c391b984/files/a8d10cfc-a63c-49da-b39a-4cf22026d693.jpg',
-      badge: 'Лимитированная серия',
-      isLimited: true,
+      name: 'ՀԱՅԱՍՏԱՆ',
+      nameEn: 'Armenia Heritage',
+      category: 'women',
+      price: '28 500',
+      image: 'https://cdn.poehali.dev/projects/98496b6e-deb1-4c3e-9923-6404c391b984/files/2cd84e36-147a-4baa-a468-a9cc5af926a0.jpg',
+      badge: 'Эксклюзив',
     },
   ];
 
@@ -73,28 +59,32 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <header className="sticky top-0 z-50 bg-black text-white border-b border-gray-800">
+      <header className="sticky top-0 z-50 bg-white border-b border-border shadow-sm">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-8">
-              <h1 className="text-2xl font-heading font-bold tracking-tight">adidas</h1>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-gradient-to-br from-primary via-secondary to-accent rounded-full flex items-center justify-center">
+                  <span className="text-white font-heading font-bold text-sm">ՀԱՅ</span>
+                </div>
+                <h1 className="text-2xl font-heading font-bold tracking-tight">ԱՐՄԵՆԻԱ</h1>
+              </div>
               <nav className="hidden md:flex items-center gap-6">
-                <a href="#new" className="text-sm hover:text-gray-300 transition-colors">Новинки</a>
-                <a href="#men" className="text-sm hover:text-gray-300 transition-colors">Мужское</a>
-                <a href="#women" className="text-sm hover:text-gray-300 transition-colors">Женское</a>
-                <a href="#shoes" className="text-sm hover:text-gray-300 transition-colors">Обувь</a>
-                <a href="#accessories" className="text-sm hover:text-gray-300 transition-colors">Аксессуары</a>
-                <a href="#about" className="text-sm hover:text-gray-300 transition-colors">О бренде</a>
+                <a href="#collections" className="text-sm hover:text-primary transition-colors">Коллекции</a>
+                <a href="#women" className="text-sm hover:text-primary transition-colors">Женское</a>
+                <a href="#men" className="text-sm hover:text-primary transition-colors">Мужское</a>
+                <a href="#accessories" className="text-sm hover:text-primary transition-colors">Аксессуары</a>
+                <a href="#heritage" className="text-sm hover:text-primary transition-colors">Наследие</a>
               </nav>
             </div>
             <div className="flex items-center gap-4">
-              <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
+              <Button variant="ghost" size="icon">
                 <Icon name="Search" size={20} />
               </Button>
-              <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
+              <Button variant="ghost" size="icon">
                 <Icon name="User" size={20} />
               </Button>
-              <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
+              <Button variant="ghost" size="icon">
                 <Icon name="ShoppingCart" size={20} />
               </Button>
             </div>
@@ -102,72 +92,80 @@ const Index = () => {
         </div>
       </header>
 
-      <section className="relative h-[600px] bg-gradient-to-br from-black via-gray-900 to-black overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-20"></div>
+      <section className="relative h-[650px] bg-gradient-to-br from-primary/5 via-white to-secondary/5 overflow-hidden">
+        <div className="absolute inset-0 opacity-5">
+          <svg className="w-full h-full" viewBox="0 0 400 400">
+            <pattern id="armenian-pattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+              <path d="M50 0 L75 25 L50 50 L25 25 Z M0 50 L25 75 L0 100 M100 50 L75 75 L100 100" 
+                    stroke="currentColor" strokeWidth="2" fill="none" className="text-primary"/>
+            </pattern>
+            <rect width="100%" height="100%" fill="url(#armenian-pattern)" />
+          </svg>
+        </div>
         <div className="container mx-auto px-4 h-full flex items-center relative z-10">
-          <div className="max-w-2xl animate-fade-in">
-            <Badge className="mb-4 bg-accent text-white hover:bg-accent/90 text-xs px-3 py-1">
-              СЕЗОН ВЕСНА 2025
-            </Badge>
-            <h2 className="text-6xl md:text-7xl font-heading font-bold text-white mb-6 leading-tight">
-              IMPOSSIBLE<br />IS NOTHING
+          <div className="max-w-3xl animate-fade-in">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="h-1 w-16 bg-gradient-to-r from-primary via-secondary to-accent"></div>
+              <Badge className="bg-accent text-foreground hover:bg-accent/90 text-xs px-4 py-1.5">
+                СДЕЛАНО В АРМЕНИИ
+              </Badge>
+            </div>
+            <h2 className="text-6xl md:text-7xl font-heading font-bold mb-6 leading-tight bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+              Հայկական<br />Ոճ և Ժառանգություն
             </h2>
-            <p className="text-xl text-gray-300 mb-8 max-w-lg">
-              Новая коллекция спортивной одежды и обуви для достижения максимальных результатов
+            <p className="text-2xl text-muted-foreground mb-3 font-heading">
+              Армянский стиль и наследие
+            </p>
+            <p className="text-lg text-muted-foreground mb-8 max-w-2xl">
+              Современная одежда с традиционными армянскими орнаментами. 
+              Каждое изделие создано вручную мастерами Еревана, сохраняя древние традиции ткачества.
             </p>
             <div className="flex gap-4">
-              <Button size="lg" className="bg-white text-black hover:bg-gray-200 font-medium px-8">
-                Смотреть коллекцию
+              <Button size="lg" className="bg-primary text-white hover:bg-primary/90 font-medium px-8 shadow-lg">
+                Смотреть коллекции
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-black font-medium px-8">
-                Узнать больше
+              <Button size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary hover:text-white font-medium px-8">
+                История бренда
               </Button>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="limited" className="py-12 bg-gradient-to-r from-accent/10 via-accent/5 to-accent/10 border-y-2 border-accent">
+      <section className="py-16 bg-gradient-to-r from-primary/10 via-accent/10 to-secondary/10 border-y border-border">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-accent rounded-full flex items-center justify-center animate-pulse">
-                <Icon name="Zap" size={24} className="text-white" />
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { icon: 'Mountain', title: 'Сделано в Армении', desc: 'Производство в Ереване с 2015 года' },
+              { icon: 'Hand', title: 'Ручная работа', desc: 'Каждое изделие создано вручную мастерами' },
+              { icon: 'Sparkles', title: 'Национальные узоры', desc: 'Традиционные армянские орнаменты' },
+            ].map((feature, idx) => (
+              <div key={idx} className="flex items-start gap-4 animate-fade-in" style={{ animationDelay: `${idx * 100}ms` }}>
+                <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Icon name={feature.icon} size={24} className="text-white" />
+                </div>
+                <div>
+                  <h3 className="font-heading font-bold mb-1">{feature.title}</h3>
+                  <p className="text-sm text-muted-foreground">{feature.desc}</p>
+                </div>
               </div>
-              <div>
-                <h3 className="text-2xl font-heading font-bold">Лимитированная серия</h3>
-                <p className="text-muted-foreground">Эксклюзивные модели в ограниченном количестве</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-4">
-              <span className="text-sm text-muted-foreground">Осталось времени:</span>
-              <div className="flex gap-2">
-                {[
-                  { value: timeLeft.hours, label: 'ч' },
-                  { value: timeLeft.minutes, label: 'м' },
-                  { value: timeLeft.seconds, label: 'с' }
-                ].map((item, idx) => (
-                  <div key={idx} className="bg-black text-white rounded-lg px-3 py-2 min-w-[60px] text-center">
-                    <div className="text-2xl font-heading font-bold">{String(item.value).padStart(2, '0')}</div>
-                    <div className="text-xs opacity-70">{item.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section id="new" className="py-16">
+      <section id="collections" className="py-20">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <h3 className="text-4xl font-heading font-bold mb-2">Новинки</h3>
-              <p className="text-muted-foreground">Последние поступления сезона</p>
-            </div>
+          <div className="text-center mb-12 animate-fade-in">
+            <h3 className="text-5xl font-heading font-bold mb-4 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+              Наши коллекции
+            </h3>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Современный дизайн встречается с древними традициями
+            </p>
           </div>
 
-          <div className="flex gap-2 mb-8 overflow-x-auto pb-2">
+          <div className="flex gap-2 mb-10 overflow-x-auto pb-2 justify-center">
             {categories.map((cat) => (
               <Button
                 key={cat.id}
@@ -181,50 +179,42 @@ const Index = () => {
             ))}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {filteredProducts.map((product, idx) => (
               <Card 
                 key={product.id} 
-                className="group overflow-hidden hover:shadow-xl transition-all duration-300 animate-fade-in border-gray-200"
+                className="group overflow-hidden hover:shadow-2xl transition-all duration-500 animate-fade-in border-2 hover:border-primary/20"
                 style={{ animationDelay: `${idx * 100}ms` }}
               >
                 <CardContent className="p-0">
-                  <div className="relative overflow-hidden bg-gray-50 aspect-square">
+                  <div className="relative overflow-hidden bg-gradient-to-br from-primary/5 to-secondary/5 aspect-[3/4]">
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     />
-                    {product.isLimited && (
-                      <div className="absolute top-3 left-3">
-                        <Badge className="bg-accent text-white">
-                          <Icon name="Zap" size={12} className="mr-1" />
-                          Limited
-                        </Badge>
-                      </div>
-                    )}
-                    {!product.isLimited && (
-                      <Badge className="absolute top-3 left-3 bg-black text-white">
-                        {product.badge}
-                      </Badge>
-                    )}
-                    <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Button size="icon" className="bg-white text-black hover:bg-gray-100">
+                    <Badge className="absolute top-4 left-4 bg-accent text-foreground shadow-lg">
+                      {product.badge}
+                    </Badge>
+                    <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <Button size="icon" className="bg-white text-primary hover:bg-primary hover:text-white shadow-lg">
                         <Icon name="Heart" size={18} />
                       </Button>
                     </div>
                   </div>
-                  <div className="p-4">
-                    <h4 className="font-heading font-semibold mb-1 text-sm uppercase tracking-wide">
-                      {product.name}
-                    </h4>
-                    <p className="text-muted-foreground text-sm mb-3">
-                      {categories.find(c => c.id === product.category)?.name}
+                  <div className="p-5 bg-white">
+                    <div className="flex items-center gap-2 mb-2">
+                      <h4 className="font-heading font-bold text-lg text-primary">
+                        {product.name}
+                      </h4>
+                    </div>
+                    <p className="text-sm text-muted-foreground mb-4">
+                      {product.nameEn}
                     </p>
                     <div className="flex items-center justify-between">
-                      <span className="text-xl font-heading font-bold">{product.price} ₽</span>
-                      <Button size="sm" className="bg-black text-white hover:bg-gray-800">
-                        В корзину
+                      <span className="text-2xl font-heading font-bold text-primary">{product.price} ₽</span>
+                      <Button size="sm" className="bg-primary text-white hover:bg-primary/90">
+                        Купить
                       </Button>
                     </div>
                   </div>
@@ -235,41 +225,65 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-black text-white">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+      <section id="heritage" className="py-24 bg-gradient-to-br from-primary via-secondary to-primary text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <svg className="w-full h-full" viewBox="0 0 400 400">
+            <pattern id="khachkar" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+              <circle cx="40" cy="40" r="3" fill="white"/>
+              <path d="M40 20 L40 60 M20 40 L60 40" stroke="white" strokeWidth="2"/>
+              <circle cx="40" cy="40" r="15" fill="none" stroke="white" strokeWidth="1"/>
+            </pattern>
+            <rect width="100%" height="100%" fill="url(#khachkar)" />
+          </svg>
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="animate-slide-up">
               <h3 className="text-5xl font-heading font-bold mb-6">
-                Сезонная коллекция<br />СПОРТ БЕЗ ГРАНИЦ
+                Արարատյան ժառանգություն
               </h3>
-              <p className="text-gray-300 text-lg mb-8">
-                Инновационные технологии и современный дизайн для максимальной производительности. 
-                Созданы для тех, кто не останавливается на достигнутом.
+              <p className="text-xl mb-3 opacity-90">Наследие Арарата</p>
+              <p className="text-lg opacity-80 mb-8 leading-relaxed">
+                Наш бренд основан на древних традициях армянского ткачества и вышивки. 
+                Мы используем только натуральные ткани и органические красители, 
+                создавая уникальные изделия, которые рассказывают историю тысячелетней культуры.
               </p>
-              <ul className="space-y-4 mb-8">
+              <div className="space-y-4 mb-8">
                 {[
-                  'Технология BOOST для максимальной амортизации',
-                  'Дышащий материал Primeknit',
-                  'Влагоотталкивающее покрытие',
-                  'Экологичные материалы переработки'
+                  'Традиционные армянские орнаменты хачкаров',
+                  'Ручная вышивка национальных узоров',
+                  'Натуральные ткани из органического хлопка',
+                  'Поддержка местных мастеров и ремесленников'
                 ].map((feature, idx) => (
-                  <li key={idx} className="flex items-center gap-3">
-                    <Icon name="CheckCircle2" size={20} className="text-accent" />
-                    <span>{feature}</span>
-                  </li>
+                  <div key={idx} className="flex items-center gap-3">
+                    <div className="w-6 h-6 rounded-full bg-accent flex items-center justify-center flex-shrink-0">
+                      <Icon name="Check" size={16} className="text-foreground" />
+                    </div>
+                    <span className="text-base">{feature}</span>
+                  </div>
                 ))}
-              </ul>
-              <Button size="lg" className="bg-white text-black hover:bg-gray-200">
-                Купить сейчас
+              </div>
+              <Button size="lg" className="bg-white text-primary hover:bg-accent hover:text-foreground">
+                Узнать больше о нас
                 <Icon name="ArrowRight" size={18} className="ml-2" />
               </Button>
             </div>
             <div className="relative">
-              <div className="aspect-[4/5] bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg overflow-hidden">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-9xl font-heading font-bold opacity-20">3</div>
-                    <div className="text-2xl font-heading font-bold -mt-8">STRIPES</div>
+              <div className="aspect-square bg-white/10 backdrop-blur-sm rounded-2xl overflow-hidden border-2 border-white/20 shadow-2xl">
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
+                  <div className="mb-6">
+                    <div className="text-8xl font-heading font-bold mb-2">2015</div>
+                    <div className="text-xl opacity-80">Год основания</div>
+                  </div>
+                  <div className="h-px w-32 bg-white/30 mb-6"></div>
+                  <div className="mb-6">
+                    <div className="text-6xl font-heading font-bold mb-2">1000+</div>
+                    <div className="text-lg opacity-80">Довольных клиентов</div>
+                  </div>
+                  <div className="h-px w-32 bg-white/30 mb-6"></div>
+                  <div>
+                    <div className="text-6xl font-heading font-bold mb-2">100%</div>
+                    <div className="text-lg opacity-80">Сделано в Армении</div>
                   </div>
                 </div>
               </div>
@@ -278,28 +292,29 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="about" className="py-20 bg-gray-50">
+      <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h3 className="text-4xl font-heading font-bold mb-6">О бренде Adidas</h3>
-            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              С 1949 года adidas создает спортивную одежду и обувь, которая помогает атлетам 
-              достигать невозможного. Три полоски — это не просто логотип, это символ 
-              инноваций, качества и страсти к спорту.
+          <div className="max-w-4xl mx-auto text-center">
+            <h3 className="text-4xl font-heading font-bold mb-6">Мастерская в Ереване</h3>
+            <p className="text-lg text-muted-foreground mb-12 leading-relaxed">
+              Наша мастерская расположена в самом сердце Еревана, где опытные мастера 
+              создают каждое изделие с любовью к традициям и вниманием к деталям. 
+              Мы гордимся тем, что поддерживаем местное производство и сохраняем 
+              уникальное культурное наследие Армении.
             </p>
-            <div className="grid md:grid-cols-3 gap-8 mt-12">
+            <div className="grid md:grid-cols-4 gap-8">
               {[
-                { icon: 'Trophy', title: 'Победы', value: '1000+', desc: 'Олимпийских медалей' },
-                { icon: 'Globe', title: 'Присутствие', value: '160+', desc: 'Стран по всему миру' },
-                { icon: 'Heart', title: 'Миссия', value: '∞', desc: 'Вдохновлять поколения' },
+                { icon: 'Users', title: 'Мастера', value: '25+' },
+                { icon: 'Clock', title: 'Часов работы', value: '500+' },
+                { icon: 'Package', title: 'Изделий в год', value: '2000+' },
+                { icon: 'Award', title: 'Лет опыта', value: '10+' },
               ].map((stat, idx) => (
-                <div key={idx} className="text-center animate-fade-in" style={{ animationDelay: `${idx * 150}ms` }}>
-                  <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+                <div key={idx} className="text-center animate-fade-in" style={{ animationDelay: `${idx * 100}ms` }}>
+                  <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
                     <Icon name={stat.icon} size={28} className="text-white" />
                   </div>
-                  <div className="text-4xl font-heading font-bold mb-2">{stat.value}</div>
-                  <div className="font-heading font-semibold mb-1">{stat.title}</div>
-                  <div className="text-sm text-muted-foreground">{stat.desc}</div>
+                  <div className="text-4xl font-heading font-bold mb-2 text-primary">{stat.value}</div>
+                  <div className="text-sm text-muted-foreground">{stat.title}</div>
                 </div>
               ))}
             </div>
@@ -307,46 +322,56 @@ const Index = () => {
         </div>
       </section>
 
-      <footer className="bg-black text-white py-12">
+      <footer className="bg-foreground text-background py-16">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
+          <div className="grid md:grid-cols-4 gap-10 mb-12">
             <div>
-              <h4 className="font-heading font-bold text-xl mb-4">adidas</h4>
-              <p className="text-gray-400 text-sm">
-                Impossible is nothing. Создаем будущее спорта вместе с вами.
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-gradient-to-br from-primary via-secondary to-accent rounded-full flex items-center justify-center">
+                  <span className="text-white font-heading font-bold text-sm">ՀԱՅ</span>
+                </div>
+                <h4 className="font-heading font-bold text-xl">ԱՐՄԵՆԻԱ</h4>
+              </div>
+              <p className="text-sm opacity-70">
+                Брендовая одежда с армянскими мотивами. 
+                Традиции встречают современность.
               </p>
             </div>
             <div>
-              <h5 className="font-heading font-semibold mb-4">Магазин</h5>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors">Мужское</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Женское</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Обувь</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Аксессуары</a></li>
+              <h5 className="font-heading font-semibold mb-4">Коллекции</h5>
+              <ul className="space-y-2 text-sm opacity-70">
+                <li><a href="#" className="hover:opacity-100 transition-opacity">Женское</a></li>
+                <li><a href="#" className="hover:opacity-100 transition-opacity">Мужское</a></li>
+                <li><a href="#" className="hover:opacity-100 transition-opacity">Аксессуары</a></li>
+                <li><a href="#" className="hover:opacity-100 transition-opacity">Новинки</a></li>
               </ul>
             </div>
             <div>
-              <h5 className="font-heading font-semibold mb-4">Поддержка</h5>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors">Доставка</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Возврат</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Размеры</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Контакты</a></li>
+              <h5 className="font-heading font-semibold mb-4">Информация</h5>
+              <ul className="space-y-2 text-sm opacity-70">
+                <li><a href="#" className="hover:opacity-100 transition-opacity">О бренде</a></li>
+                <li><a href="#" className="hover:opacity-100 transition-opacity">Доставка</a></li>
+                <li><a href="#" className="hover:opacity-100 transition-opacity">Оплата</a></li>
+                <li><a href="#" className="hover:opacity-100 transition-opacity">Контакты</a></li>
               </ul>
             </div>
             <div>
-              <h5 className="font-heading font-semibold mb-4">Следите за нами</h5>
-              <div className="flex gap-3">
-                {['Instagram', 'Facebook', 'Twitter', 'Youtube'].map((social) => (
-                  <Button key={social} size="icon" variant="ghost" className="text-gray-400 hover:text-white hover:bg-white/10">
+              <h5 className="font-heading font-semibold mb-4">Мы в соцсетях</h5>
+              <div className="flex gap-3 mb-6">
+                {['Instagram', 'Facebook', 'Youtube'].map((social) => (
+                  <Button key={social} size="icon" variant="ghost" className="opacity-70 hover:opacity-100">
                     <Icon name={social as any} size={20} />
                   </Button>
                 ))}
               </div>
+              <p className="text-sm opacity-70">
+                Ереван, Армения<br />
+                info@armenia-brand.am
+              </p>
             </div>
           </div>
-          <div className="border-t border-gray-800 pt-8 text-center text-sm text-gray-400">
-            <p>© 2025 adidas. Все права защищены.</p>
+          <div className="border-t border-white/10 pt-8 text-center text-sm opacity-70">
+            <p>© 2025 ԱՐՄԵՆԻԱ. Все права защищены. Сделано с любовью в Армении 🇦🇲</p>
           </div>
         </div>
       </footer>
